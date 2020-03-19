@@ -27,6 +27,8 @@ int main(int argc, char** argv) {
     if ((mb = mmap(NULL, fs.st_size, PROT_READ | PROT_WRITE,
         MAP_SHARED, fileno(fp), 0)) == MAP_FAILED)
         err(1, "cannot mmap");
+    
+    fclose(fp);
 
     /* print header content! */
     hdr = (RecoHeader*)mb;
@@ -57,7 +59,5 @@ int main(int argc, char** argv) {
                 thetitle);
     }
 
-    /* clean up */
-    fclose(fp);
     munmap(mb, fs.st_size);
 }
