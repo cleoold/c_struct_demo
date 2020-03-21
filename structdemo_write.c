@@ -7,8 +7,6 @@
 #include "darray.h"
 #include "structdemo.h"
 
-static void donothing(void *_) {}
-
 static void getRecord(  int64_t userid,
                         int64_t timestamp,
                         double score,
@@ -86,5 +84,5 @@ int main(void) {
     /* cleanup */
     fclose(fp);
     records->free(records, free);
-    strings->free(strings, donothing);
+    strings->free(strings, NULL);
 }

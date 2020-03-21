@@ -18,8 +18,9 @@ Array_D *Array_D_new() {
 
 static void Array_D_free(Array_D *arry, Array_D_cb callback) {
     register int i;
-    for (i = 0; i < arry->length; ++i)
-        callback(arry->content[i]);
+    if (callback != NULL)
+        for (i = 0; i < arry->length; ++i)
+            callback(arry->content[i]);
     free(arry->content);
     free(arry);
 }
